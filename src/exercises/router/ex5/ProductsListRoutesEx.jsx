@@ -1,6 +1,6 @@
 import React from 'react'
-import { products } from './MoviesDataEx'
 import { Link } from 'react-router-dom'
+import { products } from './MoviesDataEx'
 
 export default function ProductsListRoutesEx() {
   return (
