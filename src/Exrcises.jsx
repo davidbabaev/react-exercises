@@ -1,0 +1,123 @@
+
+import HomePageEx5 from "./exercises/advanced general/ex5/HomePageEx5"
+import { ThemeProviderEx5 } from "./exercises/advanced general/ex5/ThemeProviderEx5"
+
+
+export default function Exrcises() {
+  return (
+    // <ObjectFilterEasierEx/>
+    // <FilterDisplayObjectEx/>
+    // <ReducePracticingEx/>
+    // <ReduceSecond/>
+    // <GroupByCategory/>
+    // <CategoryCheckObj/>
+    // <NewCategoryEx/>
+    // <EasierReduceEx/>
+    // <ReduceNewTryEx/>
+    // <ReducePracticingEx/>
+    // <HomeProductEx/>
+    // <ProductRouterEx/>
+    // <LoginFormHooksEx/>
+    // <SimpleFormEx/>
+    // <SimpleFormSecEx/>
+    // <CounterExampleEx/>
+    // <ToggleExampleEx/>
+    // <FormParExampleEx/>
+    // <ToggleAdvancedExample/>
+    // <CouterAdvancedEx/>
+    // <ListExample/>
+    // <LocalStorageExample/>
+    // <CreateHoverExample/>
+    // <WindowSizeExample/>
+    // <KeyPressExample/>
+    // <JokeFetcherEx/>
+    // <MessageLogger/>
+    // <TimerCleanUpEx/>
+    // <UserProfileEx/>
+    // <UserDashboardEx/>
+    // <ShowPostsAndUsers/>
+    // <SimpleDebounceEx/>
+    // <SuperSimpleDebounce/>
+    // <DebounceMessage/>
+    // <TimerBasics/>
+    // <MultipleTimerBasic/>
+    // <CancelTimer/>
+    // <MultipleClicks/>
+    // <CancelPreviusTimer/>
+    // <TryingTimers/>
+    // <ReactSolutionTryingTimers/>
+    // <NumberStoreEx/>
+    // <CountButtonClicks/>
+    // <FocusInput/>
+    // <RememberPrevius/>
+    // <PreviusName/>
+    // <DebounceCompleteEx/>
+    // <CharacterCounter/>
+    // <SearchBoxDebounce/>
+    // <UserAvailibilityDebounce/>
+    // <MultiFieldFormDebounce/>
+    // <RealDebounceExample/>
+    // <ChracterCounterWithHook/>
+    // <InputHandlingDebounce/>
+    // <UserSearch/>
+    // <DebounceFromScratch/>
+    // <UseDebounceInputEx/>
+    // <UsernmeValidationEx/>
+    // <UserSearchApi/>
+    // <SortPracticing/>
+    // <SortFilterEx/>
+    // <MultipleFilterSortEx/>
+    // <AdvancedFilterPractice/>
+    // <LocalStoragePractice/>
+    // <PracticeLoaclSec/>
+    // <SaveNumberLoacl/>
+    // <FavoriteColorSaver/>
+    // <TodoItemLocaStorage/>
+    // <LocalStorageCheckDarkLight/>
+    // <UsernameSaver/>
+    // <LocalCounterEx/>
+    // <ShoppingCart/>
+    // <UserAppContext/>
+    // <TodoAppEx/>
+    // <UseMemoExample/>
+    // <SimpleCounterMemo/>
+    // <UseCallbackExample/>
+    // <ParentCallBack/>
+    // <ReactMemo/>
+    // <ParaentMemoEx/>
+    // <ShoppingCartParent/>
+    // <TodolistCallback/>
+    // <ParCallback/>
+    // <ParentCallBackEx/>
+    // <FromValidationExample/>
+    // <RealTimeValidation/>
+    // <SimpleForm/>
+    // <RealTimeValidation/>
+    // <PasswordValidation/>
+    // <UseFormExample/>
+    // <FormValidationEngine/>
+    // <RealTimeValidation/>
+    // <AuthProvider/>
+    // <AppAuthEx/>
+    // <TestBox/>
+    // <ProtectedRouteEx/>
+    // <JwtExample/>
+    // <AppSearchBox/>
+    // <AppUseLocalStorage2/>
+    // <AppEx/>
+    // <UseMemoExample/>
+    // <UseMemoEx3/>
+    // <ThemeProvider>
+    //   <HeaderEx3/>
+    // </ThemeProvider>
+    // <ThemeProviderEx4>
+    //     <NavBarEx4/>
+    // </ThemeProviderEx4>
+    <ThemeProviderEx5>
+      <HomePageEx5/>
+    </ThemeProviderEx5>
+    // <ThemeProviderEx6>
+    //   <NavBarEx6/>
+    // </ThemeProviderEx6>
+  )
+}
