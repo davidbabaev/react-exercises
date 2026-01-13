@@ -31,11 +31,14 @@ export default function UserDashboardEx6() {
                 <div>
                   <p>EDITING:</p>
                   <hr />
+                  <h2>{editTitle}</h2>
+                  <p>{editText}</p>
+                  <p>link: {editImg}</p>
                   <input 
                     placeholder='Title'
                     value={editTitle}
-                    onChange={(e) => setEditTitle(e.target.value)}  
-                  />
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    />
                   <input
                     placeholder='Text'
                     value={editText}
