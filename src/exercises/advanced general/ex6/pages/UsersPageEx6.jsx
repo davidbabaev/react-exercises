@@ -21,7 +21,7 @@ function UsersPageEx6({value}) {
     
     const navigateToUser = useNavigate();
 
-    const countries = [...new Set(users.map(user => user.location.country.toLowerCase()))] // remove doplicates from array, and we get new array by name countries that without duplicates
+    const countries = [...new Set(users.map(user => user.country.toLowerCase()))] // remove doplicates from array, and we get new array by name countries that without duplicates
     
     const filtred = useMemo(() => {
 
@@ -29,7 +29,7 @@ function UsersPageEx6({value}) {
 
         // search by name;
         result = result.filter((user) => {
-            return (user.name.first + ' ' + user.name.last).toLowerCase().includes(debounceSearch.toLowerCase())
+            return (user.name).toLowerCase().includes(debounceSearch.toLowerCase())
         });
 
         // filter: Gender
@@ -38,7 +38,7 @@ function UsersPageEx6({value}) {
         }
 
         if(countryFilter !== ''){
-            result = result.filter(user => user.location.country.toLowerCase() === countryFilter.toLowerCase())
+            result = result.filter(user => user.country.toLowerCase() === countryFilter.toLowerCase())
         }
 
         // sorts:
@@ -47,17 +47,17 @@ function UsersPageEx6({value}) {
 
             // age sort:
             if(ageSort === 'low'){
-                comparison = a.dob.age - b.dob.age;
+                comparison = a.age - b.age;
             } else if(ageSort === 'high'){
-                comparison = b.dob.age - a.dob.age;
+                comparison = b.age - a.age;
             }
 
             // name sort:
             if(comparison === 0){
                 if(nameSort === 'az'){
-                    comparison = a.name.first.localeCompare(b.name.first);
+                    comparison = a.name.localeCompare(b.name);
                 } else if(nameSort === 'za'){
-                    comparison = b.name.first.localeCompare(a.name.first);
+                    comparison = b.name.localeCompare(a.name);
                 }
             }
 
@@ -139,14 +139,14 @@ function UsersPageEx6({value}) {
         <br />
         <br />
         {visibleUsers.map((user) => (
-            <div key={user.login.uuid}>
-                <img style={{borderRadius: '50%'}} src={user.picture.large}/>
-                <h3>{user.name.first + ' ' + user.name.last}</h3>
+            <div key={user.userId}>
+                <img style={{borderRadius: '50%'}} src={user.photo}/>
+                <h3>{user.name}</h3>
                 <p>Email: {user.email}</p>
-                <p>Age: {user.dob.age}</p>
-                <p>Country: {user.location.country}</p>
+                <p>Age: {user.age}</p>
+                <p>Country: {user.country}</p>
                 <button onClick={() => selectHandle(user)}>Select User</button>
-                <button onClick={() => navigateToUser(`/appusers/userprofile/${user.login.uuid}`)}>To The User</button>
+                <button onClick={() => navigateToUser(`/appusers/userprofile/${user.userId}`)}>To The User</button>
                 <hr />
             </div>
         ))}

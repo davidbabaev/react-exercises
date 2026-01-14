@@ -57,9 +57,15 @@ export function AuthProviderEx6({children}) {
 
         const newUser = {
             userId: generateID(),
+            name: name,
             email: email,
             password: password,
-            name: name,
+            country: '',
+            photo: '',
+            age: 0,
+            gender: '',
+            phone: '0501234567',
+            source: 'REGISTERED',
             createdAt: new Date().toISOString() // "2025-01-05T10:30:00.000Z"
         }
 

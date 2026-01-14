@@ -9,7 +9,7 @@ export default function UserProfileEx6() {
 
     const{users} = useUsersEx6();
     
-    const user = users.find(u => u.login.uuid === id);
+    const user = users.find(u => u.userId === id);
 
     if(!user){
         return <p>Loading..</p>
@@ -20,10 +20,10 @@ export default function UserProfileEx6() {
     <div>
         <br />
         <br />
-        <img style={{width:"200px", height:"200px", borderRadius: '50%'}} src={user.picture.large}/>
-        <h2>Welcome Back, {user.name.first + ' ' + user.name.last}</h2>
-        <p>User Name: {user.login.username}</p>
-        <p>User Age: {user.dob.age}</p>
+        <img style={{width:"200px", height:"200px", borderRadius: '50%'}} src={user.photo}/>
+        <h2>Welcome Back, {user.name}</h2>
+        {/* <p>User Name: {user.login.username}</p> */}
+        <p>User Age: {user.age}</p>
         <p>Email: {user.email}</p>
     </div>
   )

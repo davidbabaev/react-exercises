@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { transformApiUserEx6 } from "../utils/transformApiUserEx6";
 
  function useUsersEx6() {
 
@@ -10,8 +11,11 @@ import { useEffect, useState } from "react";
         try{
             const response = await fetch('https://randomuser.me/api/?results=30&seed=abc');
             const data = await response.json()
-            setUsers(data.results);
-            localStorage.setItem('cachedUsers', JSON.stringify(data.results))
+
+            const transformFormedUsers = data.results.map(transformApiUserEx6)
+
+            setUsers(transformFormedUsers);
+            localStorage.setItem('cachedUsers', JSON.stringify(transformFormedUsers))
         }
         catch (err){
             console.log(err);
