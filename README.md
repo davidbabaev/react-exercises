@@ -4,7 +4,7 @@
 
 ## 📚 3.1.2026
 
-**Topic:** Using disabled = {} inside tag
+**Topic:** React Project
 
 **Notes:**
 - We can disable it if we need or in case something else is turned on or turned off.
@@ -15,16 +15,65 @@
 
 ---
 
-## 📚 19.1.2026
+## 📚 5.1.2026
 
-**Topic:** Express Basics
+**Topic:** React Project
 
 **Notes:**
-- app.get() handles GET requests
-- app.post() handles POST requests
-- req and res are objects with methods
-- Middleware runs before routes
+- I learned usersPage logics of sort and filter 
+- I learned comparison = 0 is for checking if we have users with the same age so the sort a-z will work if we have users with 25 so we will sort them with a-z. (i’m not sure how this in happening because the sort a-z need to be disabled when the other sort working, also the sort in execute only when we choose it in the select option)
+- I learned we can do select with an option of all and more option that run on array with map.((c)) we will have list of options, <option key = c, value = c >{c}</option>
+- I learned to use Set, set is to remove duplicates, it can remove duplicates from array. But we can't map on set items. 
+- I learned set syntax >> const countries = […new Set(map(user) => user.location.country))]
+- We check in if() the filters not empty, if the filters not empty strings so filter, without functions, just filter if(gender !== ‘’){newUsers = newUsers.filter(.....)}
+- I learned we using two useEffects exactly like in useSelected, inside Auth provider component,
+- In autProvider we add const for registeredUsers with an array
+- We have function for handle login user and function for handle register users, bith have objects and parameters.
+- I learned we can user new Date().now().toString() + Math().random(36).randomString(2, 6)
 
-[📄 Full Notes](https://docs.google.com/spreadsheets/d/YOUR_LINK)
+
+[📄 Full Notes](https://docs.google.com/document/d/1r2jeuQqOoQALMwHNmY06OX3omDkoUU0q9F6y8VycbtY/edit?tab=t.0)
+
+---
+
+## 📚 6.1.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Working with loginPage file
+- Working with AuthProvider file
+- Working with new page, RegisterPage
+- Create newUser
+- Using state of registeredUsers
+- Using state of error for showing error message
+- Using state user to handle loginned user
+- Create registered user object
+- Check in the loginPage if a user already exists with const result = handleLogin(email,password), we import this function from our AuthProvider, then we check if(!result.success) result is the function, inside the function we have return{success: true} and one like this with false, the false run when user invalid, the true runs if the function run well, so we check like that we insure if out login data in valid to this check, id yes we setError(result.message) and do return to stop the code here.
+
+
+
+[📄 Full Notes](https://docs.google.com/document/d/1axmcRKHJ7zJ25dwte4qA7iSe8vzyPQ1-fvEG1tiUU8M/edit?tab=t.0)
+
+---
+
+## 📚 12.1.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Define card data structure
+- Create CardsProviderEx6
+- Create Card Form Page
+- Display all cards
+- My Cards in dashboard
+- Delete cards
+- Edit cards
+- working with GitHub
+
+
+
+
+[📄 Full Notes](https://docs.google.com/document/d/1CMN0nQfJ3fsslD61LxlcgcyCgIWnesg50NfX5MThWzc/edit?usp=sharing)
 
 ---
