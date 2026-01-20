@@ -44,7 +44,7 @@ export function AuthProviderEx6({children}) {
         return Date.now().toString() + Math.random().toString(36).substring(2,6)
     }
 
-    const handleRegister = (email, password, name) => {
+    const handleRegister = (email, password, name, country, photo, age, gender, phone) => {
 
         const emailExists = registeredUsers.some(user => user.email === email)
 
@@ -60,11 +60,11 @@ export function AuthProviderEx6({children}) {
             name: name,
             email: email,
             password: password,
-            country: '',
-            photo: '',
-            age: 0,
-            gender: '',
-            phone: '0501234567',
+            country: country,
+            photo: photo,
+            age: age,
+            gender: gender,
+            phone: phone,
             source: 'REGISTERED',
             createdAt: new Date().toISOString() // "2025-01-05T10:30:00.000Z"
         }

@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import useDebounceEx6 from '../hooks/useDebounceEx6';
 import useSelectedUsersEx6 from '../hooks/useSelectedUsersEx6';
-import useUsersEx6 from '../hooks/useUsersEx6';
 import { Link, useNavigate } from 'react-router-dom';
+import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 
 function UsersPageEx6({value}) {
 
     const debounceSearch = useDebounceEx6(value, 2000);
-    const {users, loading} = useUsersEx6();
+    const {allUsers, loading} = useAllUsersEx6();
     const {selectHandle} = useSelectedUsersEx6();
     const [count, setCount] = useState(10);
 
@@ -17,15 +17,17 @@ function UsersPageEx6({value}) {
 
     // filters
     const [genderFilter, setGenderFilter] = useState('');
+    const [sourcesFilter, setSourcesFilter] = useState('');
     const [countryFilter, setCountryFilter] = useState('');
     
     const navigateToUser = useNavigate();
 
-    const countries = [...new Set(users.map(user => user.country.toLowerCase()))] // remove doplicates from array, and we get new array by name countries that without duplicates
+    const countries = [...new Set(allUsers.map(user => user.country.toLowerCase()))] 
+    // remove doplicates from array, and we get new array by name countries that without duplicates
     
     const filtred = useMemo(() => {
 
-        let result = users;
+        let result = allUsers;
 
         // search by name;
         result = result.filter((user) => {
@@ -37,6 +39,12 @@ function UsersPageEx6({value}) {
             result = result.filter(user => user.gender === genderFilter)
         }
 
+        // filter Source - api/real
+        if(sourcesFilter !== ''){
+            result = result.filter(user => user.source === sourcesFilter)
+        }
+
+        // country filter:
         if(countryFilter !== ''){
             result = result.filter(user => user.country.toLowerCase() === countryFilter.toLowerCase())
         }
@@ -67,7 +75,7 @@ function UsersPageEx6({value}) {
         
         return result;
         
-    }, [debounceSearch, users, ageSort, nameSort, genderFilter, countryFilter])
+    }, [debounceSearch, allUsers, ageSort, nameSort, genderFilter, countryFilter, sourcesFilter])
     
     const visibleUsers = filtred.slice(0, count)
     
@@ -102,7 +110,7 @@ function UsersPageEx6({value}) {
                 }}
                 value={nameSort} 
                 onChange={(e) => setNameSort(e.target.value)}>
-                    <option value="">Default</option>
+                    <option value="">A-Z Default</option>
                     <option value="az">A → Z</option>
                     <option value="za">Z → A</option>
             </select>
@@ -119,6 +127,20 @@ function UsersPageEx6({value}) {
                     <option value="">All Genders</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
+            </select>
+
+            <select
+                style={{
+                    backgroundColor: sourcesFilter ? 'lightblue' : 'white', 
+                    border: 'none', 
+                    marginRight: '8px',
+                    padding: '8px',
+                }}
+                value={sourcesFilter} 
+                onChange={(e) => setSourcesFilter(e.target.value)}>
+                    <option value="">All Sources</option>
+                    <option value="API">API Users</option>
+                    <option value="REGISTERED">Registered Users</option>
             </select>
 
             <select
@@ -142,6 +164,7 @@ function UsersPageEx6({value}) {
             <div key={user.userId}>
                 <img style={{borderRadius: '50%'}} src={user.photo}/>
                 <h3>{user.name}</h3>
+                <p>Source: {user.source} User</p>
                 <p>Email: {user.email}</p>
                 <p>Age: {user.age}</p>
                 <p>Country: {user.country}</p>

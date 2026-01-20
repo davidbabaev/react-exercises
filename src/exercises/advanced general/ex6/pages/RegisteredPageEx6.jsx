@@ -1,15 +1,23 @@
 import React, { useState } from 'react'
 import { useAuthEx6 } from '../providers/AuthProviderEx6'
 import { useNavigate } from 'react-router-dom';
+import useCountriesEx6 from '../hooks/useCountriesEx6';
 
 export default function RegisteredPageEx6() {
+    
+    const [error, setError] = useState('');
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [country, setCountry] = useState('');
+    const [photo, setPhoto] = useState('');
+    const [age, setage] = useState('');
+    const [gender, setGender] = useState('');
+    const [phone, setPhone] = useState('');
 
     const {handleRegister} = useAuthEx6();
+    const {apiCountriesList, apiCountriesListLoading} = useCountriesEx6();
 
     // navigation
     const navigate = useNavigate();
@@ -34,7 +42,7 @@ export default function RegisteredPageEx6() {
             return;
         }
 
-        const result = handleRegister(email, password, name);
+        const result = handleRegister(email, password, name, country, photo, age, gender, phone);
         
         if(!result.success) {
             setError(result.message);
@@ -61,6 +69,7 @@ export default function RegisteredPageEx6() {
                     placeholder='alon levi..'
                 />
             </div>
+
             <div>
                 <label>Email:</label>
                 <br />
@@ -71,6 +80,7 @@ export default function RegisteredPageEx6() {
                     placeholder='email@gmail.com'
                 />
             </div>
+
             <div>
                 <label>Password:</label>
                 <br />
@@ -80,6 +90,26 @@ export default function RegisteredPageEx6() {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder='123*****'
                 />
+            </div>
+
+            <div>
+                <label>Country:</label>
+                <br />
+                <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}  
+                >
+                    <option value="">all countries</option>
+                    {apiCountriesList.map((country) => (
+                        <option key={country} value={country.name.common}>{country.name.common}</option>
+                    ))}
+                </select>
+                {/* <input 
+                    type="text" 
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    placeholder='Isreal'
+                /> */}
             </div>
             {error && <p style={{color: 'red'}}>{error}</p>}
             <br />
