@@ -11,9 +11,14 @@ function useCountriesEx6() {
             const response = await fetch('https://restcountries.com/v3.1/all?fields=name')
             const data = await response.json();
 
-            setApiCountriesList(data.name.common)
+            const countryName = data
+                .map(country => country.name.common)
+                .sort((a,b) => a.localeCompare(b));
 
-            console.log(data.name.common);
+            setApiCountriesList(countryName)
+            localStorage.setItem('apiCountriesList', JSON.stringify(countryName))
+
+            console.log(countryName);
         }
         catch(err){
             console.log(err.message);
@@ -21,7 +26,13 @@ function useCountriesEx6() {
     }
 
     useEffect(() => {
-        fetchCountriesList();
+        const saved = JSON.parse(localStorage.getItem('apiCountriesList'))
+
+        if(saved && saved.length > 0){
+            setApiCountriesList(saved)
+        } else{
+            fetchCountriesList();
+        }
     }, [])
 
   return {apiCountriesList, apiCountriesListLoading}

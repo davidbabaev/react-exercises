@@ -44,7 +44,7 @@ export function AuthProviderEx6({children}) {
         return Date.now().toString() + Math.random().toString(36).substring(2,6)
     }
 
-    const handleRegister = (email, password, name, country, photo, age, gender, phone) => {
+    const handleRegister = (email, password, name, country, age, gender, phone) => {
 
         const emailExists = registeredUsers.some(user => user.email === email)
 
@@ -61,7 +61,7 @@ export function AuthProviderEx6({children}) {
             email: email,
             password: password,
             country: country,
-            photo: photo,
+            photo: 'https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png',
             age: age,
             gender: gender,
             phone: phone,

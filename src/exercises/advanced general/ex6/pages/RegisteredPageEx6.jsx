@@ -11,8 +11,8 @@ export default function RegisteredPageEx6() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [country, setCountry] = useState('');
-    const [photo, setPhoto] = useState('');
-    const [age, setage] = useState('');
+    // const [photo, setPhoto] = useState('');
+    const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
     const [phone, setPhone] = useState('');
 
@@ -31,7 +31,7 @@ export default function RegisteredPageEx6() {
             setError('Name is required');
             return;
         }
-
+        
         if(password.trim().length < 6){
             setError('Password must be at least 6 characters');
             return;
@@ -42,7 +42,22 @@ export default function RegisteredPageEx6() {
             return;
         }
 
-        const result = handleRegister(email, password, name, country, photo, age, gender, phone);
+        if(country === ''){
+            setError('Country is Required');
+            return;
+        }
+
+        if(gender === ''){
+            setError('Gender is Required');
+            return;
+        }
+
+        if(age === '' || age < 16){
+            setError("Age required and must be 16 or older")
+            return;
+        }
+
+        const result = handleRegister(email, password, name, country, age, gender, phone);
         
         if(!result.success) {
             setError(result.message);
@@ -101,16 +116,50 @@ export default function RegisteredPageEx6() {
                 >
                     <option value="">all countries</option>
                     {apiCountriesList.map((country) => (
-                        <option key={country} value={country.name.common}>{country.name.common}</option>
+                        <option key={country} value={country}>{country}</option>
                     ))}
                 </select>
-                {/* <input 
-                    type="text" 
-                    value={country}
-                    onChange={(e) => setCountry(e.target.value)}
-                    placeholder='Isreal'
-                /> */}
             </div>
+
+            <div>
+                <label>Age:</label>
+                <br />
+                <input 
+                    type="number" 
+                    value={age}
+                    min={16}
+                    max={100}
+                    onChange={(e) => setAge(e.target.value)}
+                    placeholder='24'
+                    />
+            </div>
+
+            <div>
+                <label>Gender:</label>
+                <br />
+                <select
+                    value={gender} 
+                    onChange={(e) => setGender(e.target.value)}>
+                        <option value="">All Genders</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Phone:</label>
+                <br />
+                <input 
+                    type="text" 
+                    value={phone}
+                    // min={16}
+                    maxLength={10}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder='051-234-5670'
+                    />
+            </div>
+
+
             {error && <p style={{color: 'red'}}>{error}</p>}
             <br />
             <button type='submit'>Register</button>

@@ -162,7 +162,7 @@ function UsersPageEx6({value}) {
         <br />
         {visibleUsers.map((user) => (
             <div key={user.userId}>
-                <img style={{borderRadius: '50%'}} src={user.photo}/>
+                <img style={{borderRadius: '50%', width: '15%'}} src={user.photo}/>
                 <h3>{user.name}</h3>
                 <p>Source: {user.source} User</p>
                 <p>Email: {user.email}</p>
