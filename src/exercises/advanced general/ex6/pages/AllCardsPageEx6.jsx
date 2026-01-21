@@ -33,7 +33,7 @@ export default function AllCardsPageEx6() {
         let result = registeredCards;
         
         if(creatorId !== ''){
-            result = result.filter(card => card.name === creatorId)
+            result = result.filter(card => card.userId === creatorId)
         }
 
         if(debounceSearchCard !== ''){
