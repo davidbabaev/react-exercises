@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
     
     const selectHandle = useCallback((user) => {
         const include = selectedUsers.some
-        (sel => sel.login.uuid === user.login.uuid)
+        (sel => sel.userId === user.userId)
         
         if(!include){
             setSelectedUsers([...selectedUsers, user])
@@ -15,11 +15,11 @@ import { useCallback, useEffect, useState } from "react";
     
     const handleRemove = useCallback((selected) => {
         const include = selectedUsers.some
-        (sel => sel.login.uuid === selected.login.uuid)
+        (sel => sel.userId === selected.userId)
 
         if (include) {
             setSelectedUsers(selectedUsers.filter
-                (sel => sel.login.uuid !== selected.login.uuid))
+                (sel => sel.userId !== selected.userId))
         }
     }, [selectedUsers])
 

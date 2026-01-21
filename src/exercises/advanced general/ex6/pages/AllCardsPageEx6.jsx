@@ -1,17 +1,77 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useCardsProvider } from '../providers/CardsProviderEx6'
+import useAllUsersEx6 from '../hooks/useAllUsersEx6';
+import useDebounceEx6 from '../hooks/useDebounceEx6';
+import useFavoriteCardsEx6 from '../hooks/useFavoriteCardsEx6';
 
 export default function AllCardsPageEx6() {
 
-    const {registeredCards} = useCardsProvider();
-    const [count, setCount] = useState(2);
+    // filter cards by creator
+    const [creatorId, setCreatorId] = useState('')
 
-    const countedRegisterCards = registeredCards.slice(0, count)
+    // search cards by title/ text
+    const [searchCard, setSearchCard] = useState('')
+
+    const debounceSearchCard = useDebounceEx6(searchCard, 2000);
+
+    // sort cards (newest/ oldest)
+
+    // favorite/ like cards
+    // const [favorits]
+
+    // card categories/ tags
+
+
+    const {registeredCards} = useCardsProvider([]);
+    const [count, setCount] = useState(2);
+    const {allUsers} = useAllUsersEx6();
+    const {favoriteCards, handleFavoriteCards} = useFavoriteCardsEx6();
+
+    
+    const filteredCards = useMemo(() => {
+        
+        let result = registeredCards;
+        
+        if(creatorId !== ''){
+            result = result.filter(card => card.name === creatorId)
+        }
+
+        if(debounceSearchCard !== ''){
+            result = result.filter(card => card.title.toLowerCase().includes(debounceSearchCard.toLowerCase()))
+        }
+        
+        
+        return result;
+        
+    }, [creatorId, registeredCards, debounceSearchCard])
+    
+    const countedRegisterCards = filteredCards.slice(0, count)
 
   return (
     <div>
         <h1>All Cards</h1>
-        {registeredCards.length === 0 && <p>You haven't created any cards yet.</p>}
+
+        <div>
+            <select 
+                value={creatorId}
+                onChange={(e) => setCreatorId(e.target.value)}    
+            >
+                <option value="">All Users</option>
+                {allUsers.map((user) => (
+                    <option key={user.userId} value={user.userId}>{user.name}</option>
+                ))}
+            </select>
+        </div>
+
+        <div>
+            <input 
+                type="text" 
+                value={searchCard}
+                onChange={(e) => setSearchCard(e.target.value)}
+            />
+        </div>
+
+        {countedRegisterCards.length === 0 && <p>You haven't created any cards yet.</p>}
         <div style={{
             display: 'flex', 
             flexDirection: 'column'
@@ -27,8 +87,7 @@ export default function AllCardsPageEx6() {
                 <h2>{card.title}</h2>
                 <p>{card.text}</p>
                 <img src={card.img} style={{
-                    height: '40%', 
-                    width: '40%', 
+                    width: '500px',
                     borderRadius: '20px'
                 }}/>
                 <hr />
@@ -40,11 +99,12 @@ export default function AllCardsPageEx6() {
                     <p>Posted by: {card.userName}</p>
                     <p>|</p>
                     <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>
+                    <button onClick={() => handleFavoriteCards(card)}>Add To Favorites</button>
                 </div>
             </div>
         ))}
         </div>
-        {count >= registeredCards.length ? (<p>No More Cards</p>) : (
+        {count >= filteredCards.length ? (<p>No More Cards</p>) : (
             <button onClick={() => setCount(count + 2)}>Read more</button>
         )}
     </div>
