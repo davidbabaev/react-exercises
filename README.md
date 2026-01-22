@@ -1,5 +1,4 @@
 # My Learning Journey
-
 ---
 
 ## 📚 3.1.2026
@@ -93,8 +92,26 @@
 - added countries names API
 
 
-
-
 [📄 Full Notes](https://docs.google.com/document/d/12jpDat7C8_F3Zvqz-UeCopDTS16mnr7XqDHR3QY6N2A/edit?usp=sharing)
+
+---
+## 📚 21.1.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Synced project with GitHub to see current code status
+- Reviewed Phase 4 progress on ex6 project
+- Identified bug: favorites are shared by all users instead of being user-specific
+- Learned how localStorage works with key-value pairs
+- Learned why same key means shared data for everyone
+- Learned how to create user-specific keys using userId
+- Learned where userId comes from (Context from AuthProvider after login)
+- Learned the ternary operator for safety checks
+- Learned early return pattern to stop function if no user logged in
+- Fixed useFavoriteCardsEx6.js to use user-specific storage keys
+
+
+[📄 Full Notes](https://docs.google.com/document/d/1DapOMDYLZ37C_yFqtDAtrK-7KmMCeQEiVOxivaVir1k/edit?usp=sharing)
 
 ---
