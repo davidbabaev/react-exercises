@@ -95,7 +95,7 @@
 [📄 Full Notes](https://docs.google.com/document/d/12jpDat7C8_F3Zvqz-UeCopDTS16mnr7XqDHR3QY6N2A/edit?usp=sharing)
 
 ---
-## 📚 21.1.2026
+## 📚 22.1.2026
 
 **Topic:** React Project
 
