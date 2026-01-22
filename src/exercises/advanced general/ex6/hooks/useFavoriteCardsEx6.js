@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { useCardsProvider } from "../providers/CardsProviderEx6";
+import { useAuthEx6 } from "../providers/AuthProviderEx6";
 
 function useFavoriteCardsEx6() {
 
     // const {registeredCards} = useCardsProvider();
     const [favoriteCards, setFavoriteCards] = useState([]);
+    const {user} = useAuthEx6();
+
+    const storageUserkey = user ? `favoriteCards_${user.userId}` : null;
+
 
     const handleFavoriteCards = useCallback((card) => {
         setFavoriteCards((prev) => {
@@ -18,17 +22,21 @@ function useFavoriteCardsEx6() {
 
     // useEffect on mount - with get LocalStorage
     useEffect(() => {
-        const savedCards = JSON.parse(localStorage.getItem('favoriteCards'))
+        if(!storageUserkey) return;
+
+        const savedCards = JSON.parse(localStorage.getItem(storageUserkey))
 
         if(savedCards){
             setFavoriteCards(savedCards)
         }
-    }, [])
+    }, [storageUserkey])
     
     // useEffect when changed with set LocalStorage
     useEffect(() => {
-        localStorage.setItem('favoriteCards' ,JSON.stringify(favoriteCards))
-    }, [favoriteCards])
+        if(!storageUserkey) return;
+
+        localStorage.setItem(storageUserkey ,JSON.stringify(favoriteCards))
+    }, [favoriteCards, storageUserkey])
 
   return{favoriteCards, handleFavoriteCards}
 }
