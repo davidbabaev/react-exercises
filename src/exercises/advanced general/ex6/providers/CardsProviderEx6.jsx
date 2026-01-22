@@ -41,7 +41,7 @@ const handleCardRegister = useCallback((title, text, img) => {
         createdAt: new Date().toISOString()
     };
 
-    setRegisteredCards([...registeredCards, newCard]);
+    setRegisteredCards( prev => [...prev, newCard]);
 
     return{
         success: true,

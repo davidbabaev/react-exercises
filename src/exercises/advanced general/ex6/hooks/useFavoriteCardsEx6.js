@@ -7,14 +7,14 @@ function useFavoriteCardsEx6() {
     const [favoriteCards, setFavoriteCards] = useState([]);
 
     const handleFavoriteCards = useCallback((card) => {
-        const include = favoriteCards.some(fav => {
-            return fav.cardId === card.cardId
+        setFavoriteCards((prev) => {
+            const include = prev.some(fav => fav.cardId === card.cardId)
+            if(!include){
+                return [...prev, card]
+            }
+            return prev
         })
-
-        if(!include){
-            setFavoriteCards([...favoriteCards, card])
-        }
-    }, [favoriteCards])
+    }, [])
 
     // useEffect on mount - with get LocalStorage
     useEffect(() => {
