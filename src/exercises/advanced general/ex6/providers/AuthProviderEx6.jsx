@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 
 const UseAuthCheck = createContext();
 
@@ -8,6 +9,8 @@ export function AuthProviderEx6({children}) {
     const[user, setUser] = useState(null);
 
     const [registeredUsers, setRegisteredUsers] = useState([]);
+
+    // const allUsers = useAllUsersEx6()
 
     // registered users saving in localStorage
     useEffect(() => {

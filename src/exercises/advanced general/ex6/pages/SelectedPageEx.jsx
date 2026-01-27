@@ -4,8 +4,8 @@ import useFavoriteCardsEx6 from '../hooks/useFavoriteCardsEx6'
 
 export default function SelectedPageEx() {
 
-    const {selectedUsers, handleRemove} = useSelectedUsersEx6()
-    const {favoriteCards} = useFavoriteCardsEx6();
+    const {selectedUsers, handleRemoveUser} = useSelectedUsersEx6()
+    const {favoriteCards, handleRemoveCard} = useFavoriteCardsEx6();
 
   return (
     <div>
@@ -16,7 +16,7 @@ export default function SelectedPageEx() {
                 <div key={selected.userId}>
                     <img style={{borderRadius: '50%'}} src={selected.photo}/>
                     <p>{selected.name}</p>
-                    <button onClick={() => handleRemove(selected)}>Remove</button>
+                    <button onClick={() => handleRemoveUser(selected)}>Remove</button>
                     <hr />
                 </div>
             ))}
@@ -48,6 +48,7 @@ export default function SelectedPageEx() {
                         <p>Posted by: {favCard.userName}</p>
                         <p>|</p>
                         <p>Created at: {new Date(favCard.createdAt).toLocaleDateString()}</p>
+                        <button onClick={() => handleRemoveCard(favCard)}>Remove</button>
                     </div>
                 </div>
             ))}

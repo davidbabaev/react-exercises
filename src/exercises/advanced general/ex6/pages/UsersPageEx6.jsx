@@ -8,7 +8,7 @@ function UsersPageEx6({value}) {
 
     const debounceSearch = useDebounceEx6(value, 2000);
     const {allUsers, loading} = useAllUsersEx6();
-    const {selectHandle} = useSelectedUsersEx6();
+    const {selectHandleUser} = useSelectedUsersEx6();
     const [count, setCount] = useState(10);
 
     // sorts
@@ -168,7 +168,7 @@ function UsersPageEx6({value}) {
                 <p>Email: {user.email}</p>
                 <p>Age: {user.age}</p>
                 <p>Country: {user.country}</p>
-                <button onClick={() => selectHandle(user)}>Select User</button>
+                <button onClick={() => selectHandleUser(user)}>Select User</button>
                 <button onClick={() => navigateToUser(`/appusers/userprofile/${user.userId}`)}>To The User</button>
                 <hr />
             </div>

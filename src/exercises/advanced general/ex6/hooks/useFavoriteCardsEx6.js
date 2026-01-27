@@ -9,7 +9,6 @@ function useFavoriteCardsEx6() {
 
     const storageUserkey = user ? `favoriteCards_${user.userId}` : null;
 
-
     const handleFavoriteCards = useCallback((card) => {
         setFavoriteCards((prev) => {
             const include = prev.some(fav => fav.cardId === card.cardId)
@@ -17,6 +16,12 @@ function useFavoriteCardsEx6() {
                 return [...prev, card]
             }
             return prev
+        })
+    }, [])
+
+    const handleRemoveCard = useCallback((card) => {
+        setFavoriteCards((prev) => {
+            return prev.filter(fav => fav.cardId !== card.cardId)
         })
     }, [])
 
@@ -38,7 +43,7 @@ function useFavoriteCardsEx6() {
         localStorage.setItem(storageUserkey ,JSON.stringify(favoriteCards))
     }, [favoriteCards, storageUserkey])
 
-  return{favoriteCards, handleFavoriteCards}
+  return{favoriteCards, handleFavoriteCards, handleRemoveCard}
 }
 
 export default useFavoriteCardsEx6;

@@ -29,7 +29,7 @@ export default function AllCardsPageEx6() {
 
     
     const filteredCards = useMemo(() => {
-        
+
         let result = registeredCards;
         
         if(creatorId !== ''){
@@ -40,9 +40,7 @@ export default function AllCardsPageEx6() {
             result = result.filter(card => card.title.toLowerCase().includes(debounceSearchCard.toLowerCase()))
         }
         
-        
         return result;
-        
     }, [creatorId, registeredCards, debounceSearchCard])
     
     const countedRegisterCards = filteredCards.slice(0, count)

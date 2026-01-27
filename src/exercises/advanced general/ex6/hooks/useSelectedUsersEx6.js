@@ -3,51 +3,44 @@ import { useAuthEx6 } from "../providers/AuthProviderEx6";
 
  function useSelectedUsersEx6() {
 
-    // 1. get user
-    // 2. create variable const userKey = user ? `dsgsd_${user.userId}` : null;
-    // 3. if(!userKey){setSelectedUsers(prev => [...prev, user])} else{return prev}
-    // 4. [selectedUsers, userKey]
-    // 5. useEffect 1 - id(!userKey) return; in the beginning of the function load we load from the localStorage the userKey key
-    // 6. useEffect 2 - id(!userKey) return; in the beginning of the function save/ change - we save of change the userkey key to local storage.
-
     const [selectedUsers, setSelectedUsers] = useState([])
-
     const {user} = useAuthEx6();
 
-    const selectedUserStorageKey = user ? `selectedUsers${user.userId}` : null;
+    const selectedUserStorageKey = user ? `selectedUsers_${user.userId}` : null;
     
-    const selectHandle = useCallback((user) => {
-        const include = selectedUsers.some(sel => sel.userId === user.userId);
-        
-        if(!include){
-            setSelectedUsers(prev => [...prev, user])
-        }
-    }, [selectedUsers])
+    const selectHandleUser = useCallback((user) => {
+        setSelectedUsers((prev) => {
+            const include = prev.some(sel => sel.userId === user.userId)
+
+            if(!include){
+                return [...prev, user]
+            }
+            return prev;
+        })
+    }, [])
     
-    const handleRemove = useCallback((selected) => {
-        const include = selectedUsers.some
-        (sel => sel.userId === selected.userId)
-
-        if (include) {
-            setSelectedUsers(selectedUsers.filter
-                (sel => sel.userId !== selected.userId))
-        }
-    }, [selectedUsers])
-
-    useEffect(() => {
-        const savedSelected = JSON.parse
-        (localStorage.getItem('selectedUsers'))
-        if(savedSelected){
-            setSelectedUsers(savedSelected)
-        }
+    const handleRemoveUser = useCallback((selectedUser) => {
+        setSelectedUsers((prev) => {
+            return prev.filter(sel => sel.userId !== selectedUser.userId);
+        })
     }, [])
 
     useEffect(() => {
-        localStorage.setItem
-        ('selectedUsers', JSON.stringify(selectedUsers))
-    }, [selectedUsers])
+        if(!selectedUserStorageKey) return;
 
-  return {selectedUsers, selectHandle, handleRemove}
+        const savedSelected = JSON.parse(localStorage.getItem(selectedUserStorageKey))
+        if(savedSelected){
+            setSelectedUsers(savedSelected)
+        }
+    }, [selectedUserStorageKey])
+
+    useEffect(() => {
+        if(!selectedUserStorageKey) return;
+
+        localStorage.setItem(selectedUserStorageKey, JSON.stringify(selectedUsers))
+    }, [selectedUsers, selectedUserStorageKey])
+
+  return {selectedUsers, selectHandleUser, handleRemoveUser}
 }
 
 export default useSelectedUsersEx6;
