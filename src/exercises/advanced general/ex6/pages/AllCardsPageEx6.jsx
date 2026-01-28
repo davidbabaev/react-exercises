@@ -15,6 +15,7 @@ export default function AllCardsPageEx6() {
     const debounceSearchCard = useDebounceEx6(searchCard, 2000);
 
     // sort cards (newest/ oldest)
+    const [dateSort, setDateSort] = useState('');
 
     // favorite/ like cards
     // const [favorits]
@@ -24,13 +25,13 @@ export default function AllCardsPageEx6() {
 
     const {registeredCards} = useCardsProvider([]);
     const [count, setCount] = useState(2);
-    const {allUsers} = useAllUsersEx6();
-    const {favoriteCards, handleFavoriteCards} = useFavoriteCardsEx6();
+    const {allUsers} = useAllUsersEx6(); 
+    const {handleFavoriteCards} = useFavoriteCardsEx6();
 
     
     const filteredCards = useMemo(() => {
 
-        let result = registeredCards;
+        let result = [...registeredCards];
         
         if(creatorId !== ''){
             result = result.filter(card => card.userId === creatorId)
@@ -39,9 +40,18 @@ export default function AllCardsPageEx6() {
         if(debounceSearchCard !== ''){
             result = result.filter(card => card.title.toLowerCase().includes(debounceSearchCard.toLowerCase()))
         }
+
+        if(dateSort !== ''){
+            if(dateSort === 'newest'){
+                result.sort((a,b) => b.createdAt.localeCompare(a.createdAt))
+            }
+            else if (dateSort === 'oldest'){
+                result.sort((a,b) => a.createdAt.localeCompare(b.createdAt))   
+            }
+        }
         
         return result;
-    }, [creatorId, registeredCards, debounceSearchCard])
+    }, [creatorId, registeredCards, debounceSearchCard, dateSort])
     
     const countedRegisterCards = filteredCards.slice(0, count)
 
@@ -58,6 +68,17 @@ export default function AllCardsPageEx6() {
                 {allUsers.map((user) => (
                     <option key={user.userId} value={user.userId}>{user.name}</option>
                 ))}
+            </select>
+        </div>
+
+        <div>
+            <select 
+                value={dateSort}
+                onChange={(e) => setDateSort(e.target.value)}
+            >
+                <option value="">All Dates</option>
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
             </select>
         </div>
 
