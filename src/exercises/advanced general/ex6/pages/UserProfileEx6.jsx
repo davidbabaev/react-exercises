@@ -1,15 +1,15 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import useUsersEx6 from '../hooks/useUsersEx6';
+import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 
 export default function UserProfileEx6() {
 
     const {id} = useParams();
     console.log(id);
 
-    const{users} = useUsersEx6();
+    const{allUsers} = useAllUsersEx6();
     
-    const user = users.find(u => u.userId === id);
+    const user = allUsers.find(u => u.userId === id);
 
     if(!user){
         return <p>Loading..</p>

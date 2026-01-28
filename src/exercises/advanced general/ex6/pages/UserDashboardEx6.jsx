@@ -62,7 +62,7 @@ export default function UserDashboardEx6() {
                 <div>
                     <h2>{card.title}</h2>
                     <p>{card.text}</p>
-                    <img src={card.img} style={{height: '40%', width: '40%', borderRadius: '20px'}}/>
+                    <img src={card.img} style={{width: '90%', borderRadius: '20px'}}/>
                     <hr />
                     <div style={{
                         display: 'flex', 

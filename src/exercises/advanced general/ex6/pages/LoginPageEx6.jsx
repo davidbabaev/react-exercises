@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuthEx6 } from '../providers/AuthProviderEx6';
 import { useNavigate } from 'react-router-dom';
+import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 
 export default function LoginPageEx6() {
 
@@ -11,6 +12,7 @@ export default function LoginPageEx6() {
 
   const {handleLogin} = useAuthEx6();
   const navigate = useNavigate();
+  const {allUsers} = useAllUsersEx6();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,7 +27,7 @@ export default function LoginPageEx6() {
       return;
     }
 
-    const result = handleLogin(email, password);
+    const result = handleLogin(email, password, allUsers);
 
     if(!result.success){
       setError(result.message);

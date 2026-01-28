@@ -14,7 +14,7 @@ export default function SelectedPageEx() {
             {!selectedUsers[0] && (<p>You Didn't Select Users  Yet</p>)}
             {selectedUsers.map((selected) => (
                 <div key={selected.userId}>
-                    <img style={{borderRadius: '50%'}} src={selected.photo}/>
+                    <img style={{borderRadius: '50%', width: '100px'}} src={selected.photo}/>
                     <p>{selected.name}</p>
                     <button onClick={() => handleRemoveUser(selected)}>Remove</button>
                     <hr />
@@ -48,7 +48,7 @@ export default function SelectedPageEx() {
                         <p>Posted by: {favCard.userName}</p>
                         <p>|</p>
                         <p>Created at: {new Date(favCard.createdAt).toLocaleDateString()}</p>
-                        <button onClick={() => handleRemoveCard(favCard)}>Remove</button>
+                        <button onClick={() => handleRemoveCard(favCard.cardId)}>Remove</button>
                     </div>
                 </div>
             ))}

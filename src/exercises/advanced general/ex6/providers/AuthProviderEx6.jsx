@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 
 const UseAuthCheck = createContext();
 
@@ -88,9 +87,9 @@ export function AuthProviderEx6({children}) {
         };  
     }
 
-    const handleLogin = (email, password) => {
+    const handleLogin = (email, password, allUsers) => {
 
-        const foundUser = registeredUsers.find(user => user.email === email && user.password === password);
+        const foundUser = allUsers.find(user => user.email === email && user.password === password);
 
         if(!foundUser){
             return{
