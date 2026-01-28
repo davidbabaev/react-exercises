@@ -1,4 +1,8 @@
 # My Learning Journey
+
+**Project Plan:**
+[📄 Full Notes](https://docs.google.com/document/d/1bDIF-NWSzuyhGD6-c_riUkqU0Efkn_jIm6Pz-HnF9Lk/edit?usp=sharing)
+
 ---
 
 ## 📚 3.1.2026
@@ -110,6 +114,24 @@
 - Learned the ternary operator for safety checks
 - Learned early return pattern to stop function if no user logged in
 - Fixed useFavoriteCardsEx6.js to use user-specific storage keys
+
+
+[📄 Full Notes](https://docs.google.com/document/d/1DapOMDYLZ37C_yFqtDAtrK-7KmMCeQEiVOxivaVir1k/edit?usp=sharing)
+
+---
+
+## 📚 28.1.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Login fix - handleLogin now accepts allUsers parameter so API users can login
+- Destructuring fix - const { allUsers } = useAllUsersEx6() (object, not array)
+- Date sort - Added newest/oldest sorting to AllCardsPage
+- Spread fix - let result = [...registeredCards] to prevent mutation
+- .sort() mutates original array
+- .filter() creates new array
+- [...array] = true copy
 
 
 [📄 Full Notes](https://docs.google.com/document/d/1DapOMDYLZ37C_yFqtDAtrK-7KmMCeQEiVOxivaVir1k/edit?usp=sharing)

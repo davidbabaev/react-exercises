@@ -49,7 +49,6 @@ export default function AllCardsPageEx6() {
                 result.sort((a,b) => a.createdAt.localeCompare(b.createdAt))   
             }
         }
-        
         return result;
     }, [creatorId, registeredCards, debounceSearchCard, dateSort])
     
