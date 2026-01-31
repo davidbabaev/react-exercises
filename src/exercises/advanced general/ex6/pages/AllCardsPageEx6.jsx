@@ -3,6 +3,7 @@ import { useCardsProvider } from '../providers/CardsProviderEx6'
 import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 import useDebounceEx6 from '../hooks/useDebounceEx6';
 import useFavoriteCardsEx6 from '../hooks/useFavoriteCardsEx6';
+import { CARD_CATEGORIES } from '../constants/cardsCategories';
 
 export default function AllCardsPageEx6() {
 
@@ -21,6 +22,7 @@ export default function AllCardsPageEx6() {
     // const [favorits]
 
     // card categories/ tags
+    const [categoryFilter, setCategoryFilter] = useState('');
 
 
     const {registeredCards} = useCardsProvider([]);
@@ -49,8 +51,13 @@ export default function AllCardsPageEx6() {
                 result.sort((a,b) => a.createdAt.localeCompare(b.createdAt))   
             }
         }
+
+        if(categoryFilter !== ''){
+            result = result.filter(cardCategory => cardCategory.category === categoryFilter)
+        }
+
         return result;
-    }, [creatorId, registeredCards, debounceSearchCard, dateSort])
+    }, [creatorId, registeredCards, debounceSearchCard, dateSort, categoryFilter])
     
     const countedRegisterCards = filteredCards.slice(0, count)
 
@@ -78,6 +85,20 @@ export default function AllCardsPageEx6() {
                 <option value="">All Dates</option>
                 <option value="newest">Newest first</option>
                 <option value="oldest">Oldest first</option>
+            </select>
+        </div>
+
+        <div>
+            <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+            >
+                <option value="">All Categories</option>
+                {CARD_CATEGORIES.map((category) => (
+                    <option key={category} value={category}>
+                        {category}
+                    </option>
+                ))}
             </select>
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useCardsProvider } from '../providers/CardsProviderEx6'
 import { useNavigate } from 'react-router-dom';
+import { CARD_CATEGORIES } from '../constants/cardsCategories';
 
 export default function CardsRegisterPageEx6() {
 
@@ -9,6 +10,7 @@ export default function CardsRegisterPageEx6() {
     const [title, setTitle] = useState('');
     const [text, setText] = useState('');
     const [img, setImg] = useState('');
+    const [category, setCategory] = useState('');
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
@@ -32,7 +34,7 @@ export default function CardsRegisterPageEx6() {
             return;
         }
 
-        const result = handleCardRegister(title, text, img)
+        const result = handleCardRegister(title, text, img, category)
 
         if(!result.success){
             setError(result.message)// show error to user
@@ -75,6 +77,22 @@ export default function CardsRegisterPageEx6() {
                     onChange={(e) => setImg(e.target.value)}
                 />
             </div>
+
+            <div>
+                <label>Category:</label>
+                <br />
+                <select 
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                >
+                    <option value="">All Categories</option>
+                    {CARD_CATEGORIES.map((category) => (
+                        <option key={category} value={category}>{category}</option>
+                    )
+                    )}
+                </select>
+            </div>
+
             {error && <p style={{color: 'red'}}>{error}</p>}
             <br />
             <button type='submit'>Post Your Card</button>

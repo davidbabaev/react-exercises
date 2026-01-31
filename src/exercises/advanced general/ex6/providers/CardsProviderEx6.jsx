@@ -28,7 +28,7 @@ useEffect(() => {
     localStorage.setItem('registeredCards', JSON.stringify(registeredCards))
 }, [registeredCards])
 
-const handleCardRegister = useCallback((title, text, img) => {
+const handleCardRegister = useCallback((title, text, img, category) => {
     // no dulicates check needed - genrateID() is always unique
 
     const newCard = {
@@ -36,6 +36,7 @@ const handleCardRegister = useCallback((title, text, img) => {
         title: title,
         text: text,
         img: img,
+        category: category,
         userId: user.userId,
         userName: user.name,
         createdAt: new Date().toISOString()
