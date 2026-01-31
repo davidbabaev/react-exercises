@@ -26,7 +26,7 @@ export default function AllCardsPageEx6() {
     const {registeredCards} = useCardsProvider([]);
     const [count, setCount] = useState(2);
     const {allUsers} = useAllUsersEx6(); 
-    const {handleFavoriteCards} = useFavoriteCardsEx6();
+    const {favoriteCards ,handleFavoriteCards} = useFavoriteCardsEx6();
 
     
     const filteredCards = useMemo(() => {
@@ -117,7 +117,11 @@ export default function AllCardsPageEx6() {
                     <p>Posted by: {card.userName}</p>
                     <p>|</p>
                     <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>
-                    <button onClick={() => handleFavoriteCards(card)}>Add To Favorites</button>
+                    {favoriteCards.some(c => c.cardId === card.cardId) ? (
+                        <button onClick={() => handleFavoriteCards(card)}>Remove From Favorite</button>
+                    ) : (
+                        <button onClick={() => handleFavoriteCards(card)}>Add To Favorites</button>
+                    )}
                 </div>
             </div>
         ))}

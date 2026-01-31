@@ -15,7 +15,9 @@ function useFavoriteCardsEx6() {
             if(!include){
                 return [...prev, card]
             }
-            return prev
+            return prev.filter(fav => fav.cardId !== card.cardId)
+            // we want to filter out the card that is already include in the favoriteCards state.
+            // the if is put it in the array because it's not included there, now we want to handle filter it out of this array if it does included there.
         })
     }, [])
 
@@ -34,7 +36,7 @@ function useFavoriteCardsEx6() {
         if(savedCards){
             setFavoriteCards(savedCards)
         }
-    }, [storageUserkey])
+    }, [storageUserkey]);
     
     // useEffect when changed with set LocalStorage
     useEffect(() => {
