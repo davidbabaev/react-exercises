@@ -19,7 +19,7 @@ export default function AllCardsPageEx6() {
     const [dateSort, setDateSort] = useState('');
 
     // favorite/ like cards
-    // const [favorits]
+    const [favorites, setFavorites] = useState('')
 
     // card categories/ tags
     const [categoryFilter, setCategoryFilter] = useState('');
@@ -33,7 +33,9 @@ export default function AllCardsPageEx6() {
     
     const filteredCards = useMemo(() => {
 
-        let result = [...registeredCards];
+        // Step 1: Choose starting data based on favorites filter:
+        let result = 
+        favorites === 'myFavorites' ? [...favoriteCards] : [...registeredCards];
         
         if(creatorId !== ''){
             result = result.filter(card => card.userId === creatorId)
@@ -57,7 +59,7 @@ export default function AllCardsPageEx6() {
         }
 
         return result;
-    }, [creatorId, registeredCards, debounceSearchCard, dateSort, categoryFilter])
+    }, [creatorId, registeredCards, debounceSearchCard, dateSort, categoryFilter, favorites])
     
     const countedRegisterCards = filteredCards.slice(0, count)
 
@@ -99,6 +101,16 @@ export default function AllCardsPageEx6() {
                         {category}
                     </option>
                 ))}
+            </select>
+        </div>
+
+        <div>
+            <select 
+                value={favorites}
+                onChange={(e) => setFavorites(e.target.value)}
+            >
+                <option value="">All / Favorites</option>
+                <option value="myFavorites">My Favorites Cards</option>
             </select>
         </div>
 
