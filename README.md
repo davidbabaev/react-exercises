@@ -137,3 +137,34 @@
 [📄 Full Notes](https://docs.google.com/document/d/1DapOMDYLZ37C_yFqtDAtrK-7KmMCeQEiVOxivaVir1k/edit?usp=sharing)
 
 ---
+## 📚 1.2.2026
+
+**Topic:** React Project
+
+**Notes:**
+
+- We worked on filter cards by 
+- We created a new file and folder by names: constant/ cardsCategories.js, this file will -include an array of 53 strings each string is a category. We use in the CardsProvider that created card object, new parameter by name category, because in cardsRegister page we will use in in the function of registerCards that we import from the provider, but here the category word is a state, that we use in a select list that use .map on the array of all categories that we imported. Then we use these logics in the allCards page we use there filter on => card.category === category
+- We did toggle favorites on the cards - so we can toggle on the card favorite/ unfavorite We use there .some() and also we use filter inside the handleFavorite function we use there instead of return prev we use return with filter so we can filter out of the favorite array something that is already included in it. We use !== to check if these cards that we clicked on !== that card that we clicked on → this wrong, if it’s wrong filter it out because it need to be true, id1 !== id1 that’s wrong so filter it out, but id1 !== id2 it’s true, keep it.
+
+[📄 Full Notes](https://docs.google.com/document/d/1a5QSsqWTvonkMRGVHqI7RtRbSnN0WfFrLeFzOsezi1I/edit?usp=sharing)
+
+---
+## 📚 2.2.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Toggle favorites (add/remove with one button)
+- Created constants folder with categories array
+- Added category select to card creation form
+- Added category to card object in provider
+- Added category filter on AllCardsPage
+- Toggle select/deselect for users
+- Fixed handleRemoveCard bug (was passing cardId instead of card object)
+- Added category edit in dashboard
+- Filter by favorites logic (explained, needs implementation)
+
+[📄 Full Notes](https://docs.google.com/document/d/1C9kISCt-fjA6n23jRivgMfMH0Roi5g7cK4iZnz_xog0/edit?usp=sharing)
+
+---
