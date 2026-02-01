@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useCardsProvider } from '../providers/CardsProviderEx6'
 import { useAuthEx6 } from '../providers/AuthProviderEx6'
+import { CARD_CATEGORIES } from '../constants/cardsCategories';
 
 export default function UserDashboardEx6() {
 
@@ -12,6 +13,7 @@ export default function UserDashboardEx6() {
     const [editTitle, setEditTitle] = useState('');
     const [editText, setEditText] = useState('');
     const [editImg, setEditImg] = useState('');
+    const [editCategory, setEditCategory] = useState('');
   
     const myCards = registeredCards.filter(card => card.userId === user.userId)
 
@@ -32,6 +34,7 @@ export default function UserDashboardEx6() {
                   <p>EDITING:</p>
                   <hr />
                   <h2>{editTitle}</h2>
+                  <p>{editCategory}</p>
                   <p>{editText}</p>
                   <p>link: {editImg}</p>
                   <input 
@@ -44,6 +47,17 @@ export default function UserDashboardEx6() {
                     value={editText}
                     onChange={(e) => setEditText(e.target.value)}  
                   />
+
+                  <select 
+                    value={editCategory}
+                    onChange={(e) => setEditCategory(e.target.value)}
+                  >
+                    <option value="">All Categories</option>
+                    {CARD_CATEGORIES.map((cardCategory) => (
+                      <option key={cardCategory} value={cardCategory}>{cardCategory}</option>
+                    ))}
+                  </select>
+
                   <input 
                     placeholder='Image: https://example.com/image.jpg'
                     value={editImg}
@@ -52,7 +66,7 @@ export default function UserDashboardEx6() {
                   <button onClick={() => setEditingCardId(null)}>Cancel</button>
                   <button
                     onClick={() => {
-                      handleEditCard(card.cardId, editTitle, editText, editImg)
+                      handleEditCard(card.cardId, editTitle, editText, editImg, editCategory)
                       setEditingCardId(null)
                     }}
                   >Save</button>
@@ -62,6 +76,7 @@ export default function UserDashboardEx6() {
                 <div>
                     <h2>{card.title}</h2>
                     <p>{card.text}</p>
+                    <p><span style={{fontWeight: 'bold'}}>Category: </span>{card.category}</p>
                     <img src={card.img} style={{width: '90%', borderRadius: '20px'}}/>
                     <hr />
                     <div style={{
@@ -77,7 +92,8 @@ export default function UserDashboardEx6() {
                           setEditingCardId(card.cardId);
                           setEditTitle(card.title);
                           setEditText(card.text);
-                          setEditImg(card.img)
+                          setEditImg(card.img);
+                          setEditCategory(card.category);
                         }}>Edit</button>
                   </div>
                 </div>

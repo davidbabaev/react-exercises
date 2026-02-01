@@ -55,7 +55,7 @@ const handleCardRegister = useCallback((title, text, img, category) => {
         setRegisteredCards(registeredCards.filter(card => card.cardId !== cardId))
     }
 
-    const handleEditCard = (cardId, newTitle, newText, newImg) => {
+    const handleEditCard = (cardId, newTitle, newText, newImg, newCategory) => {
         setRegisteredCards(registeredCards.map(card => {
             if(card.cardId === cardId){
                 // this is the one we're editing - return updated version
@@ -64,6 +64,7 @@ const handleCardRegister = useCallback((title, text, img, category) => {
                     title: newTitle, //update title
                     text: newText, //udpate text
                     img: newImg, // update img
+                    category: newCategory, // update category
                 }
             } else{
                 // not the one - return uchanged

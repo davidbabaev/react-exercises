@@ -138,6 +138,9 @@ export default function AllCardsPageEx6() {
                     <p>Posted by: {card.userName}</p>
                     <p>|</p>
                     <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>
+                    <p>|</p>
+                    {!card.category ? (<p>Category: Don't Have Yet</p>) : (<p>Category: {card.category}</p>)}
+                    
                     {favoriteCards.some(c => c.cardId === card.cardId) ? (
                         <button onClick={() => handleFavoriteCards(card)}>Remove From Favorite</button>
                     ) : (
