@@ -15,7 +15,10 @@ import { useAuthEx6 } from "../providers/AuthProviderEx6";
             if(!include){
                 return [...prev, user]
             }
-            return prev;
+
+            // small syntax fix:
+            // the: prev = prev.... <-- is unecessary. just: prev.filter()
+            return prev = prev.filter(userCard => userCard.userId !== user.userId)
         })
     }, [])
     

@@ -53,7 +53,7 @@ export default function AllCardsPageEx6() {
         }
 
         if(categoryFilter !== ''){
-            result = result.filter(cardCategory => cardCategory.category === categoryFilter)
+            result = result.filter(card => card.category === categoryFilter)
         }
 
         return result;
