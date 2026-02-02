@@ -30,7 +30,6 @@ export default function AllCardsPageEx6() {
     const {allUsers} = useAllUsersEx6(); 
     const {favoriteCards ,handleFavoriteCards} = useFavoriteCardsEx6();
 
-    
     const filteredCards = useMemo(() => {
 
         // Step 1: Choose starting data based on favorites filter:
@@ -127,40 +126,46 @@ export default function AllCardsPageEx6() {
             display: 'flex', 
             flexDirection: 'column'
             }}>
-        {countedRegisterCards.map((card) => (
-            <div style={{
-                border: 'solid black 1px', 
-                padding: '20px', 
-                borderRadius: '20px', 
-                margin: '20px 0px'
-            }} key={card.cardId}>
+        {countedRegisterCards.map((card) => {
 
-                <h2>{card.title}</h2>
-                <p>{card.text}</p>
-                <img src={card.img} style={{
-                    width: '500px',
-                    borderRadius: '20px'
-                }}/>
-                <hr />
+            const creator = allUsers.find(user => user.userId === card.userId);
+
+            return(
                 <div style={{
-                    display: 'flex', 
-                    flexDirection: 'row', 
-                    gap: '10px'
-                }}>
-                    <p>Posted by: {card.userName}</p>
-                    <p>|</p>
-                    <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>
-                    <p>|</p>
-                    {!card.category ? (<p>Category: Don't Have Yet</p>) : (<p>Category: {card.category}</p>)}
-                    
-                    {favoriteCards.some(c => c.cardId === card.cardId) ? (
-                        <button onClick={() => handleFavoriteCards(card)}>Remove From Favorite</button>
-                    ) : (
-                        <button onClick={() => handleFavoriteCards(card)}>Add To Favorites</button>
-                    )}
+                    border: 'solid black 1px', 
+                    padding: '20px', 
+                    borderRadius: '20px', 
+                    margin: '20px 0px'
+                }} key={card.cardId}>
+
+                    <h2>{card.title}</h2>
+                    <p>{card.text}</p>
+                    <img src={card.img} style={{
+                        width: '500px',
+                        borderRadius: '20px'
+                    }}/>
+                    <hr />
+                    <div style={{
+                        display: 'flex', 
+                        flexDirection: 'row', 
+                        gap: '10px'
+                    }}>
+                        <img style={{width: '6%', height: '6%', borderRadius: '50%', marginTop: '4px'}} src={creator.photo}/>
+                        <p>{card.userName}</p>
+                        <p>|</p>
+                        <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>
+                        <p>|</p>
+                        {!card.category ? (<p>Category: Don't Have Yet</p>) : (<p>Category: {card.category}</p>)}
+                        
+                        {favoriteCards.some(c => c.cardId === card.cardId) ? (
+                            <button onClick={() => handleFavoriteCards(card)}>Remove From Favorite</button>
+                        ) : (
+                            <button onClick={() => handleFavoriteCards(card)}>Add To Favorites</button>
+                        )}
+                    </div>
                 </div>
-            </div>
-        ))}
+            )
+        })}
         </div>
         {count >= filteredCards.length ? (<p>No More Cards</p>) : (
             <button onClick={() => setCount(count + 2)}>Read more</button>

@@ -48,6 +48,9 @@ export default function SelectedPageEx() {
                         <p>Posted by: {favCard.userName}</p>
                         <p>|</p>
                         <p>Created at: {new Date(favCard.createdAt).toLocaleDateString()}</p>
+                        <p>|</p>
+                        {!favCard.category ? (<p>Don't Have Categoty</p>) : (<p>Category: {favCard.category}</p>)}
+                        
                         <button onClick={() => handleRemoveCard(favCard)}>Remove</button>
                     </div>
                 </div>
