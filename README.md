@@ -168,3 +168,23 @@
 [📄 Full Notes](https://docs.google.com/document/d/1C9kISCt-fjA6n23jRivgMfMH0Roi5g7cK4iZnz_xog0/edit?usp=sharing)
 
 ---
+## 📚 3.2.2026
+
+**Topic:** React Project
+
+**Notes:**
+- Learned ?. optional chaining
+- Why ?. is a band-aid (still shows broken image)
+- Real solutions: conditional rendering, fallback values, loading states
+- Fixed localStorage wiping with isLoaded flag
+- Understood the timing problem (save runs before load)
+- Cleared corrupted cached data (old nested objects)
+- Why old cache existed (saved before transform function)
+- Fixed unique key warning with index
+- When index as key is okay vs bad
+- Browser extension errors can be ignored
+- How to read and debug React error messages
+
+[📄 Full Notes](https://docs.google.com/document/d/1ViS5Axx_29gaZhZ9XPOCrZKc2OEo8hkGlX-Q09I-yCg/edit?usp=sharing)
+
+---

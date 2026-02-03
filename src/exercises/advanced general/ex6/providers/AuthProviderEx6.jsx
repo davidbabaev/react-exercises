@@ -6,7 +6,10 @@ export function AuthProviderEx6({children}) {
 
     const[isLoggedIn, setIsLoggedIn] = useState(false);
     const[user, setUser] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false)
+
+    // flags: 
+    const [isRegistredLoaded, setIsRegistredLoaded] = useState(false)
+    const [isUserLoaded , setIsUserLoaded] = useState(false)
 
     const [registeredUsers, setRegisteredUsers] = useState([]);
 
@@ -19,11 +22,13 @@ export function AuthProviderEx6({children}) {
         if(savedRegisteredUsers){
             setRegisteredUsers(savedRegisteredUsers)
         }
+        setIsUserLoaded(true); // add this!
     }, [])
 
     useEffect(() => {
+        if(!isRegistredLoaded) return; //add this!
         localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers))
-    }, [registeredUsers])
+    }, [registeredUsers, isRegistredLoaded]) // add to dependencies -> isRegistredLoaded
 
     //===========================================================================
     // user + logged in localStorage saving
@@ -36,11 +41,13 @@ export function AuthProviderEx6({children}) {
         } else{
             setIsLoggedIn(false) // if user exist t's true
         }
+        setIsUserLoaded(true); // add this!
     }, [])
 
     useEffect(() => {
+        if(!isUserLoaded) return; //add this!
         localStorage.setItem('loggedInUser', JSON.stringify(user))
-    }, [user])
+    }, [user, isUserLoaded]) // add to dependencies -> isUserLoaded
 
 
     const generateID = () => {

@@ -62,6 +62,10 @@ export default function AllCardsPageEx6() {
     
     const countedRegisterCards = filteredCards.slice(0, count)
 
+
+    // console.log('User IDs: ', allUsers.map(u => u.userId));
+    
+
   return (
     <div>
         <h1>All Cards</h1>
@@ -73,7 +77,7 @@ export default function AllCardsPageEx6() {
             >
                 <option value="">All Users</option>
                 {allUsers.map((user) => (
-                    <option key={user.useId} value={user.userId}>{user.name}</option>
+                    <option key={user.userId} value={user.userId}>{user.name}</option>
                 ))}
             </select>
         </div>
@@ -95,7 +99,7 @@ export default function AllCardsPageEx6() {
                 onChange={(e) => setCategoryFilter(e.target.value)}
             >
                 <option value="">All Categories</option>
-                {CARD_CATEGORIES.map((category) => (
+                {CARD_CATEGORIES.map((category, index) => (
                     <option key={category} value={category}>
                         {category}
                     </option>
