@@ -73,7 +73,7 @@ export default function AllCardsPageEx6() {
             >
                 <option value="">All Users</option>
                 {allUsers.map((user) => (
-                    <option key={user.userId} value={user.userId}>{user.name}</option>
+                    <option key={user.useId} value={user.userId}>{user.name}</option>
                 ))}
             </select>
         </div>
@@ -150,7 +150,7 @@ export default function AllCardsPageEx6() {
                         flexDirection: 'row', 
                         gap: '10px'
                     }}>
-                        <img style={{width: '6%', height: '6%', borderRadius: '50%', marginTop: '4px'}} src={creator.photo}/>
+                        <img style={{width: '6%', height: '6%', borderRadius: '50%', marginTop: '4px'}} src={creator?.photo || 'https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png'}/>
                         <p>{card.userName}</p>
                         <p>|</p>
                         <p>Created at: {new Date(card.createdAt).toLocaleDateString()}</p>

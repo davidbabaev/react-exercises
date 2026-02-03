@@ -6,6 +6,7 @@ export function AuthProviderEx6({children}) {
 
     const[isLoggedIn, setIsLoggedIn] = useState(false);
     const[user, setUser] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false)
 
     const [registeredUsers, setRegisteredUsers] = useState([]);
 
