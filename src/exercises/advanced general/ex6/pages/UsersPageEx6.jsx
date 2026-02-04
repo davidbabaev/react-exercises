@@ -72,9 +72,7 @@ function UsersPageEx6({value}) {
             return comparison;
         });
 
-        
         return result;
-        
     }, [debounceSearch, allUsers, ageSort, nameSort, genderFilter, countryFilter, sourcesFilter])
     
     const visibleUsers = filtred.slice(0, count)

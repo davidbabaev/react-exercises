@@ -13,22 +13,24 @@ export function AuthProviderEx6({children}) {
 
     const [registeredUsers, setRegisteredUsers] = useState([]);
 
-    // const allUsers = useAllUsersEx6()
-
     // registered users saving in localStorage
+    // Effect A - LOAD:
     useEffect(() => {
         const savedRegisteredUsers = JSON.parse(localStorage.getItem('registeredUsers'))
-
+        
         if(savedRegisteredUsers){
             setRegisteredUsers(savedRegisteredUsers)
         }
-        setIsUserLoaded(true); // add this!
+        // setIsRegistredLoaded(true); // add this!
     }, [])
-
+    
+    // Effect B - SAVE:
     useEffect(() => {
-        if(!isRegistredLoaded) return; //add this!
+        // if(!isRegistredLoaded) return; //add this!
+        console.log("Effect B saving: ", registeredUsers);
+        
         localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers))
-    }, [registeredUsers, isRegistredLoaded]) // add to dependencies -> isRegistredLoaded
+    }, [registeredUsers,/* isRegistredLoaded */]) // add to dependencies -> isRegistredLoaded
 
     //===========================================================================
     // user + logged in localStorage saving

@@ -1,11 +1,14 @@
 import React from 'react'
 import useSelectedUsersEx6 from '../hooks/useSelectedUsersEx6'
 import useFavoriteCardsEx6 from '../hooks/useFavoriteCardsEx6'
+import { useNavigate } from 'react-router-dom';
 
 export default function SelectedPageEx() {
 
     const {selectedUsers, handleRemoveUser} = useSelectedUsersEx6()
     const {favoriteCards, handleRemoveCard} = useFavoriteCardsEx6();
+
+    const navigate = useNavigate();
 
   return (
     <div>
@@ -17,6 +20,7 @@ export default function SelectedPageEx() {
                     <img style={{borderRadius: '50%', width: '100px'}} src={selected.photo}/>
                     <p>{selected.name}</p>
                     <button onClick={() => handleRemoveUser(selected)}>Remove</button>
+                    <button onClick={() => navigate(`/appusers/userprofile/${selected.userId}`)}>to the user page</button>
                     <hr />
                 </div>
             ))}

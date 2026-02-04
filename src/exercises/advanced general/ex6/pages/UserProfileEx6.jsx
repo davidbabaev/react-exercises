@@ -5,7 +5,6 @@ import useAllUsersEx6 from '../hooks/useAllUsersEx6';
 export default function UserProfileEx6() {
 
     const {id} = useParams();
-    console.log(id);
 
     const{allUsers} = useAllUsersEx6();
     
