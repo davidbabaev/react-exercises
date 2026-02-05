@@ -13,24 +13,21 @@ export function AuthProviderEx6({children}) {
 
     const [registeredUsers, setRegisteredUsers] = useState([]);
 
-    // registered users saving in localStorage
-    // Effect A - LOAD:
     useEffect(() => {
         const savedRegisteredUsers = JSON.parse(localStorage.getItem('registeredUsers'))
         
         if(savedRegisteredUsers){
             setRegisteredUsers(savedRegisteredUsers)
         }
-        // setIsRegistredLoaded(true); // add this!
+        setIsRegistredLoaded(true); 
     }, [])
     
-    // Effect B - SAVE:
     useEffect(() => {
-        // if(!isRegistredLoaded) return; //add this!
+        if(!isRegistredLoaded) return;
         console.log("Effect B saving: ", registeredUsers);
         
         localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers))
-    }, [registeredUsers,/* isRegistredLoaded */]) // add to dependencies -> isRegistredLoaded
+    }, [registeredUsers, isRegistredLoaded]) 
 
     //===========================================================================
     // user + logged in localStorage saving
@@ -39,17 +36,17 @@ export function AuthProviderEx6({children}) {
 
         if(savedLoggedInUser){
             setUser(savedLoggedInUser)
-            setIsLoggedIn(true) // if user exist t's true
+            setIsLoggedIn(true) 
         } else{
-            setIsLoggedIn(false) // if user exist t's true
+            setIsLoggedIn(false) 
         }
-        setIsUserLoaded(true); // add this!
+        setIsUserLoaded(true);
     }, [])
 
     useEffect(() => {
-        if(!isUserLoaded) return; //add this!
+        if(!isUserLoaded) return;
         localStorage.setItem('loggedInUser', JSON.stringify(user))
-    }, [user, isUserLoaded]) // add to dependencies -> isUserLoaded
+    }, [user, isUserLoaded])
 
 
     const generateID = () => {
@@ -57,7 +54,6 @@ export function AuthProviderEx6({children}) {
     }
 
     const handleRegister = (email, password, name, country, age, gender, phone) => {
-
         const emailExists = registeredUsers.some(user => user.email === email)
 
         if(emailExists){
@@ -127,9 +123,31 @@ export function AuthProviderEx6({children}) {
     }
 
 
+    const editUser = (userId ,newName, newEmail, newCountry, newPhoto, newAge, newGender, newPhone) => {
+
+        setRegisteredUsers(registeredUsers.map(user => {
+            if(user.userId === userId){
+                return{
+                    ...user,
+                    name: newName,
+                    email: newEmail,
+                    country: newCountry,
+                    photo: newPhoto,
+                    age: newAge,
+                    gender: newGender,
+                    phone: newPhone
+                }
+            }
+            else{
+                return user;
+            }
+        }))
+    }
+
+
   return (
     <UseAuthCheck.Provider 
-        value={{isLoggedIn, user, handleLogin, handleLogout, handleRegister, registeredUsers}}>
+        value={{isLoggedIn, user, handleLogin, handleLogout, handleRegister, registeredUsers, editUser, setUser}}>
             {children}
     </UseAuthCheck.Provider>
   )
