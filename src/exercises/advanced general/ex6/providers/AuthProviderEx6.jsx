@@ -142,6 +142,17 @@ export function AuthProviderEx6({children}) {
                 return user;
             }
         }))
+        
+        setUser(loggedInUser => {
+            if(loggedInUser.userId === userId){
+                return{
+                    ...loggedInUser,
+                    name: newName,
+                    email: newEmail,
+                }
+            }
+        } 
+        )
     }
 
 
