@@ -141,8 +141,8 @@ export default function UserDashboardEx6() {
                   onChange={(e) => setEditGender(e.target.value)}
                 >
                   <option value="">All</option>
-                  <option value="">Male</option>
-                  <option value="">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               </div>
 
